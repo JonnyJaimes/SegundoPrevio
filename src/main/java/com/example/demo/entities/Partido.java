@@ -1,19 +1,32 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.util.Date;
-
 @Entity
+@Table(name="partido")
 @Data
-@Table(name = "partido")
-public class Partido implements Serializable {
+public class Partido {
+
     @Id
-    private int id;
-    private Date fecha;
+    @SequenceGenerator(name="partido_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="partido_id_seq")
+    private Integer id;
+
+    @Column(name = "fecha")
+    private LocalDateTime fecha;
+
     @ManyToOne
-    @JoinColumn(name = "id",insertable = false,updatable = false)
-    private Estadio estadio_id;
+    @JoinColumn(name = "estadio_id")
+    private Estadio estadio;
 }

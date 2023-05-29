@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
-public interface EstadioRepository {
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.entities.Estadio;
+
+public interface EstadioRepository extends JpaRepository<Estadio,Integer> {
 }

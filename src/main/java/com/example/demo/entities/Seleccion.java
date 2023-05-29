@@ -5,16 +5,24 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-@Entity
-@Data
-@Table(name = "seleccion")
-public class Seleccion implements Serializable {
-    @Id
-    private int id;
-    private String nombre;
-    @ManyToOne
-    @JoinColumn(name = "id",insertable = false,updatable = false)
-    private Continente continente_id;
-    private String grupo;
 
+@Entity
+@Table(name="seleccion")
+@Data
+public class Seleccion {
+
+    @Id
+    @SequenceGenerator(name="seleccion_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seleccion_id_seq")
+    private Integer id;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @ManyToOne
+    @JoinColumn(name = "continente_id")
+    private Continente continente;
+
+    @Column(name = "grupo")
+    private String grupo;
 }
