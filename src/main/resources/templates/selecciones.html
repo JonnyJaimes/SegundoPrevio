@@ -19,7 +19,7 @@
             <td th:text="${seleccion.grupo}"></td>
             <td>
                 <a th:href="@{/selecciones/edit/{id}(id=${seleccion.id})}">Editar</a>
-                <a th:href="@{/selecciones/delete/{id}(id=${seleccion.id})}">Eliminar</a>
+                <a th:href="@{/selecciones/delete/{id}(id=${seleccion.id})}" onclick="return confirm('¿Estás seguro de eliminar esta selección?')">Eliminar</a>
             </td>
         </tr>
     </table>
@@ -36,3 +36,4 @@
     </form>
 </body>
 </html>
+
